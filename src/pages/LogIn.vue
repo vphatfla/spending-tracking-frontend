@@ -35,7 +35,12 @@ export default {
       const res = await loginFunction(this.username, this.password);
       if (res === null) {
         console.log('log in successed');
-        this.$router.push({ path: '/transactions', query: { user_id: 6 } });
+        const user_id = localStorage.getItem('user_id') || '';
+        console.log('user id = ', +user_id);
+        this.$router.push({
+          path: '/transactions',
+          query: { user_id: user_id },
+        });
       } else {
         console.log(res);
       }

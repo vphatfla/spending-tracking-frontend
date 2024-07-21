@@ -16,3 +16,19 @@ export async function getTransactionsByUserId(user_id) {
     return err;
   }
 }
+
+export async function uploadTransactionFunction(transaction) {
+  console.log('transaction info' + JSON.stringify(transaction));
+  try {
+    const response = await (
+      await fetch(BACKEND_BASE_URL + '/transactions/upload', {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify(transaction),
+      })
+    ).json();
+    if (response === null) return null;
+  } catch (err) {
+    return err;
+  }
+}

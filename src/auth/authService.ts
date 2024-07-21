@@ -14,6 +14,7 @@ export async function loginFunction(username: string, password: string) {
     ).json();
     if (response.error) return response.error;
     localStorage.setItem('user_token', response.token);
+    localStorage.setItem('user_id', response.id);
     return null;
   } catch (err) {
     return err;
